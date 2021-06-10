@@ -28,6 +28,8 @@ Route::PATCH('/posts/{post}', 'PostController@update')->name('posts.update');
 Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
 
 
+Route::resource('comments','CommentController');
+
 Route::get('profile', function () {
     // Only verified users may enter...
 })->middleware('verified');

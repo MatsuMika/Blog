@@ -7,13 +7,22 @@ use App\Http\Requests\PostRequest;
 use Auth;
 use App\Post;
 use App\Comment;
+use App\User;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
     public function index(){
 
         $posts = Post::all();
-        return view('posts.index', compact('posts'));
+        
+        $datetime = Carbon::now()->format('Y-m');
+
+        $post_month_count = Post::where('created_at', 'like', "%$datetime%")->count();
+
+        $user_month_count = User::where('created_at', 'like', "%$datetime%")->count();
+
+        return view('posts.index', compact('posts','post_month_count','user_month_count'));
     }
 
     public function create(){
@@ -56,9 +65,7 @@ class PostController extends Controller
         return view('posts.edit', compact('post'));
     }
 
-    public function update(PostRequest $request, $id) {
-        //dd($$request);　確認用
-        //dd(Auth::user());　確認用
+    public function update(PostRequest $request, $id){
 
         $post = Post::find($id);
 
@@ -70,8 +77,8 @@ class PostController extends Controller
         $post->body   = $request->body;
 
         $post->save();
-
-        return redirect()->route('posts.index');
+        return view('posts.show', compact('post'));
+        //return redirect()->route('posts.index');
     }
 
     public function destroy($id){

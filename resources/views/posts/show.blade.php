@@ -8,12 +8,10 @@
           <a href="{{ route('posts.create') }}" class="btn btn-primary">新規投稿</a>
           <div class="card text-center">
             <div class="card-header">
-              Blogs
+                by {{ $post->user->name }}　　{{ $post->title }}
             </div>
               <div class="card-body">
-                <h5 class="card-title">タイトル：{{ $post->title }}</h5>
-                <p class="card-text">内容：{{ $post->body }}</p>
-                <p class="card-text">投稿者：{{ $post->user->name }}</p>
+                <p class="card-text">{{ $post->body }}</p>
                 @if( Auth::id() === $post->user_id )
                     <a href=" {{ route('posts.edit',$post->id) }}" class="btn btn-primary">編集</a>                
                     <form action="{{ route('posts.destroy', $post->id) }}" method='post'>

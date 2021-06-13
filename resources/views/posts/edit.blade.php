@@ -13,17 +13,17 @@
                         @endforeach
                     </ul>
                 </div>
-              @endif
-            <form action="{{ route('posts.update',$post->id) }}" method="POST">
-            {{csrf_field()}}
-            {{method_field('PATCH')}}
+            @endif
+            <form action="{{ route('posts.update', $post->id) }}" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
                 <div class="form-group">
                     <label>タイトル</label>
-                    <input type="text" class="form-control" placeholder="タイトルを入力して下さい" name="title" value="{{ $post->title }}">
+                    <input type="text" class="form-control" value="{{ $post->title }}" name="title" >
                 </div>
                 <div class="form-group">
                     <label>内容</label>
-                    <textarea class="form-control" placeholder="内容" rows="5" name="body" value="{{ $post->body }}"></textarea>
+                    <textarea class="form-control" rows="5" name="body">{{ $post->body }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">更新する</button>
             </form>

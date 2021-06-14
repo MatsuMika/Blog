@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1>編集ページ</h1
+            <h1>編集ページ</h1>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -15,11 +15,14 @@
                 </div>
             @endif
             <form action="{{ route('posts.update', $post->id) }}" method="POST">
+            <!--
+                <form action="{{ route('posts.update', $post->id) }}" method="POST">
+            -->
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
                 <div class="form-group">
                     <label>タイトル</label>
-                    <input type="text" class="form-control" value="{{ $post->title }}" name="title" >
+                    <input type="text" class="form-control" value="{{ $post->title }}" name="title">
                 </div>
                 <div class="form-group">
                     <label>内容</label>

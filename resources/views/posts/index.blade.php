@@ -6,8 +6,9 @@
         <div class="col-md-8">
           <h1>一覧ページ</h1>
           <p>【今月】<br>
-          投稿　　：{{ $post_month_count }} 件<br>
-          登録者数：{{ $user_month_count }} 人</p>      
+            投稿　　：{{ $post_month_count }} 件<br>
+            登録者数：{{ $user_month_count }} 人
+          </p>      
           <a href="{{ route('posts.create') }}" class="btn btn-primary">新規投稿</a>
           @foreach ($posts as $post)
               <div class="card text-center">

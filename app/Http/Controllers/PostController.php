@@ -77,8 +77,8 @@ class PostController extends Controller
         $post->body   = $request->body;
 
         $post->save();
-        return view('posts.show', compact('post'));
-        //return redirect()->route('posts.index');
+        //return view('posts.show', compact('post'));
+        return redirect()->route('posts.index');
     }
 
     public function destroy($id){
